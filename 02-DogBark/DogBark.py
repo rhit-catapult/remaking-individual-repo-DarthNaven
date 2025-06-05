@@ -18,32 +18,41 @@ def main():
 
     # Prepare the image
     # TODO 1: Create an image with the 2dogs.JPG image
+    image = pygame.image.load("Pigs.webp")
     # TODO 3: Scale the image to be the size (IMAGE_SIZE, IMAGE_SIZE)
-
+    image = pygame.transform.scale(image, (IMAGE_SIZE,IMAGE_SIZE))
     # Prepare the text caption(s)
     # TODO 4: Create a font object with a size 28 font.
+    font1 = pygame.font.SysFont("franklingothicmedium", 16)
+    print(pygame.font.get_fonts())
     # TODO 5: Render the text "Two Dogs" using the font object (it's like MAKING an image).
-
+    caption1 = font1.render("Brother, may I have some oats", True, pygame.Color("Black"))
     # Prepare the music
     # TODO 8: Create a Sound object from the "bark.wav" file.
-
+    canonfire = pygame.mixer.Sound("Voicy_vine boom.mp3")
+    lol = pygame.mixer.Sound("Voicy_Canon Event .mp3")
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
             # TODO 9: Play the music (bark) if there's a mouse click.
-
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                canonfire.play()
+            if event.type == pygame.MOUSEMOTION:
+                lol.play()
         # Clear the screen and set the screen background
         screen.fill(WHITE)
-
         # Draw the image onto the screen
         # TODO 2: Draw (blit) the image onto the screen at position (0, 0)
-
+        screen.blit(image, (0,0))
         # Draw the text onto the screen
         # TODO 6: Draw (blit) the text image onto the screen in the middle bottom.
         # Hint: Commands like these might be useful..
         #          screen.get_width(), caption1.get_width(), image1.get_height()
 
+        xloc = screen.get_width() / 3 - caption1.get_width() / 2
+        yloc = screen.get_height() - 250
+        screen.blit(caption1, (xloc, yloc))
         # TODO 7: On your own, create a new bigger font and in white text place a 'funny' message on top of the image.
 
         # Update the screen

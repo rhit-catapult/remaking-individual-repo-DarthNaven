@@ -29,7 +29,7 @@ def main():
     caption1 = font1.render("Brother, may I have some oats", True, pygame.Color("Black"))
     # Prepare the music
     # TODO 8: Create a Sound object from the "bark.wav" file.
-    canonfire = pygame.mixer.Sound("Voicy_vine boom.mp3")
+    canonfire = pygame.mixer.Sound("../03-ClickInTheCircle/Voicy_vine boom.mp3")
     lol = pygame.mixer.Sound("Voicy_Canon Event .mp3")
     while True:
         for event in pygame.event.get():

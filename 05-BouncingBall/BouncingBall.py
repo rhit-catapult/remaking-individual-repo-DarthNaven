@@ -9,6 +9,36 @@ import random
 # TODO: Possible member variables: screen, color, x, y, radius, speed_x, speed_y
 # TODO: Methods: __init__, draw, move
 
+class Ball:
+    def __init__(self, screen, color, x, y, radius, speed_x, speed_y):
+        """ Creates a Cloud sprite that will produce Raindrop objects.  The cloud will be moving around. """
+        self.screen = screen
+        self.x = x
+        self.y = y
+        self.speed_x = speed_x
+        self.speed_y = speed_y
+        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        self.radius = radius
+        self.color = color
+    def draw(self):
+        """ Draws this sprite onto the screen. """
+        (pygame.draw.circle
+         (self.screen, self.color,(self.x, self.y), self.radius))
+    def move(self):
+        """ Moves the ball """
+        self.x += self.speed_x
+        self.y += self.speed_y
+        if (self.x + self.radius) > 300:
+            self.speed_x = self.speed_x * -1
+        if (self.x - self.radius) < 0:
+            self.speed_x = self.speed_x * -1
+        if (self.y + self.radius) > 300:
+            self.speed_y = self.speed_y * -1
+        if (self.y - self.radius) < 0:
+            self.speed_y = self.speed_y * -1
+
+
+
 
 def main():
     pygame.init()
@@ -18,7 +48,18 @@ def main():
     clock = pygame.time.Clock()
 
     # TODO: Create an instance of the Ball class called ball1
-
+    ball1 = Ball(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)),
+                 150, 150, random.randint(5, 50),
+                 random.randint(-5, 5), random.randint(-5, 5))
+    ball2 = Ball(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)),
+                 150, 150, random.randint(5, 50),
+                 random.randint(-5, 5), random.randint(-5, 5))
+    ball3 = Ball(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)),
+                 150, 150, random.randint(5, 50),
+                 random.randint(-5, 5), random.randint(-5, 5))
+    ball4 = Ball(screen, (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)),
+                 150, 150, random.randint(5, 50),
+                 random.randint(-5, 5), random.randint(-5, 5))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -28,8 +69,15 @@ def main():
         screen.fill(pygame.Color('gray'))
 
         # TODO: Move the ball
+        ball1.move()
+        ball2.move()
+        ball3.move()
+        ball4.move()
         # TODO: Draw the ball
-
+        ball1.draw()
+        ball2.draw()
+        ball3.draw()
+        ball4.draw()
         pygame.display.update()
 
 
